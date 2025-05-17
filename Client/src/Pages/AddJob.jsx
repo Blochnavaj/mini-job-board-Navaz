@@ -11,6 +11,7 @@ const AddJob = () => {
     description: ''
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = e => {
@@ -19,11 +20,14 @@ const AddJob = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       await axios.post('https://mini-job-board-navaz.onrender.com/api/jobs', formData);
       navigate('/');
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -40,7 +44,13 @@ const AddJob = () => {
           <option value="Part-time">Part-time</option>
         </select>
         <textarea name="description" onChange={handleChange} placeholder="Description" className="border p-2 w-full" required />
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Submitting...' : 'Submit'}
+        </button>
       </form>
     </div>
   );

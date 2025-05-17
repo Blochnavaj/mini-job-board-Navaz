@@ -47,3 +47,4 @@ npm install
 
 ## Start the  frontend server:
 npm run dev 
+ http://localhost:5173/
