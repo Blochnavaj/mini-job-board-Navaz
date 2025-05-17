@@ -6,7 +6,7 @@ const JobCard = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/jobs')
+    axios.get('https://mini-job-board-navaz.onrender.com/api/jobs')
       .then(res => setJobs(res.data))
       .catch(err => console.error(err));
   }, []);

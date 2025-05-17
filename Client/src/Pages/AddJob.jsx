@@ -20,7 +20,7 @@ const AddJob = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/jobs', formData);
+      await axios.post('https://mini-job-board-navaz.onrender.com/api/jobs', formData);
       navigate('/');
     } catch (error) {
       console.error(error);
